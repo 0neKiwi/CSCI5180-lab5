@@ -1,76 +1,151 @@
 {
+
  "R1": {
+
   "addresses": {
+
    "FastEthernet1/0": "198.51.101.1"
+
   }
+
  },
+
  "R2.csci5180": {
+
   "addresses": {
+
    "FastEthernet0/0": "10.1.1.12",
+
    "FastEthernet1/0": "198.51.101.3"
+
   }
+
  },
+
  "R3.csci5180": {
+
   "addresses": {
+
    "FastEthernet0/0": "10.1.1.13",
+
    "FastEthernet1/0": "198.51.101.2"
+
   }
+
  },
+
  "R4.5180": {
+
   "addresses": {
+
    "FastEthernet0/0": "10.1.1.2",
+
    "FastEthernet1/0": "198.51.100.4"
+
   }
+
  },
+
  "R5.5180": {
+
   "addresses": {
+
    "FastEthernet0/0": "10.1.1.5"
+
   }
+
  }
+
 }{
+
  "R1": {
+
   "FastEthernet0/0": "down",
+
   "FastEthernet1/0": "up",
+
   "FastEthernet1/1": "down",
+
   "FastEthernet2/0": "down",
+
   "FastEthernet2/1": "down",
+
   "GigabitEthernet3/0": "down",
+
   "Null0": "up"
+
  },
+
  "R2.csci5180": {
+
   "FastEthernet0/0": "up",
+
   "FastEthernet1/0": "up",
+
   "FastEthernet1/1": "down",
+
   "FastEthernet2/0": "down",
+
   "FastEthernet2/1": "down",
+
   "GigabitEthernet3/0": "down",
+
   "Null0": "up"
+
  },
+
  "R3.csci5180": {
+
   "FastEthernet0/0": "up",
+
   "FastEthernet1/0": "up",
+
   "FastEthernet1/1": "down",
+
   "FastEthernet2/0": "down",
+
   "FastEthernet2/1": "down",
+
   "GigabitEthernet3/0": "down",
+
   "Null0": "up"
+
  },
+
  "R4.5180": {
+
   "FastEthernet0/0": "up",
+
   "FastEthernet1/0": "up",
+
   "FastEthernet1/1": "down",
+
   "FastEthernet2/0": "down",
+
   "FastEthernet2/1": "down",
+
   "GigabitEthernet3/0": "down",
+
   "Null0": "up"
+
  },
+
  "R5.5180": {
+
   "FastEthernet0/0": "up",
+
   "FastEthernet1/0": "down",
+
   "FastEthernet1/1": "down",
+
   "FastEthernet2/0": "down",
+
   "FastEthernet2/1": "down",
+
   "GigabitEthernet3/0": "down",
+
   "Null0": "up"
+
  }
+
 }
