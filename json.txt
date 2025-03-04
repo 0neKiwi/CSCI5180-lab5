@@ -1,79 +1,151 @@
-from scapy.all import rdpcap
+{
 
-import sys
+ "R1": {
 
+  "addresses": {
 
+   "FastEthernet1/0": "198.51.101.1"
 
-def NMtcpdump(file, ip):
+  }
 
-    pkts = rdpcap(file)
+ },
 
-    if ip == "4":
+ "R2.csci5180": {
 
-        arp_pkts = [pkt for pkt in pkts if "ARP" in pkt]
+  "addresses": {
 
-        macs = []
+   "FastEthernet0/0": "10.1.1.12",
 
-        for pkt in arp_pkts:
+   "FastEthernet1/0": "198.51.101.3"
 
-            if "who has" in pkt.summary():
+  }
 
-                #packet is from C1
+ },
 
-                macs.append(pkt["Ether"].dst)
+ "R3.csci5180": {
 
-        return macs
+  "addresses": {
 
-    elif ip == "6":
+   "FastEthernet0/0": "10.1.1.13",
 
-        icmp_pkts = [pkt for pkt in pkts if "ICMP" in pkt.summary()]
+   "FastEthernet1/0": "198.51.101.2"
 
-        macs = []
+  }
 
-        for pkt in icmp_pkts:
+ },
 
-            if "Echo Request" in pkt.summary():
+ "R4.5180": {
 
-                #packet is from router
+  "addresses": {
 
-                #prefix is 2001:db8:2:0
+   "FastEthernet0/0": "10.1.1.2",
 
-                parts = pkt["IPv6"].src[13:].split(":")
+   "FastEthernet1/0": "198.51.100.4"
 
-                p1 = hex(int(parts[0][:2],16) ^ 1 << 1)[2:]
+  }
 
-                p2 = parts[0][2:]
+ },
 
-                p3 = parts[1][:2]
+ "R5.5180": {
 
-                p4 = parts[2][2:]
+  "addresses": {
 
-                p5 = parts[3].zfill(4)[:2]
+   "FastEthernet0/0": "10.1.1.5"
 
-                p6 = parts[3].zfill(4)[2:]
+  }
 
-                ipv6 = ":".join([p1,p2,p3,p4,p5,p6])
+ }
 
-                if ipv6 not in macs:
+}{
 
-                    macs.append(ipv6)
+ "R1": {
 
-        return macs
+  "FastEthernet0/0": "down",
 
-if __name__ == "__main__":
+  "FastEthernet1/0": "up",
 
-    if (len(sys.argv) != 2) or (sys.argv[1] not in ("4", "6")):
+  "FastEthernet1/1": "down",
 
-        print("Usage: NMtcpdump.py {4 | 6}")
+  "FastEthernet2/0": "down",
 
-        exit(-1)
+  "FastEthernet2/1": "down",
 
-    if sys.argv[1] == "4":
+  "GigabitEthernet3/0": "down",
 
-        print(NMtcpdump("lab5.pcap", "4"))
+  "Null0": "up"
 
-    elif sys.argv[1] == "6":
+ },
 
-        print(NMtcpdump("lab5v6.pcap", "6"))
+ "R2.csci5180": {
 
+  "FastEthernet0/0": "up",
 
+  "FastEthernet1/0": "up",
+
+  "FastEthernet1/1": "down",
+
+  "FastEthernet2/0": "down",
+
+  "FastEthernet2/1": "down",
+
+  "GigabitEthernet3/0": "down",
+
+  "Null0": "up"
+
+ },
+
+ "R3.csci5180": {
+
+  "FastEthernet0/0": "up",
+
+  "FastEthernet1/0": "up",
+
+  "FastEthernet1/1": "down",
+
+  "FastEthernet2/0": "down",
+
+  "FastEthernet2/1": "down",
+
+  "GigabitEthernet3/0": "down",
+
+  "Null0": "up"
+
+ },
+
+ "R4.5180": {
+
+  "FastEthernet0/0": "up",
+
+  "FastEthernet1/0": "up",
+
+  "FastEthernet1/1": "down",
+
+  "FastEthernet2/0": "down",
+
+  "FastEthernet2/1": "down",
+
+  "GigabitEthernet3/0": "down",
+
+  "Null0": "up"
+
+ },
+
+ "R5.5180": {
+
+  "FastEthernet0/0": "up",
+
+  "FastEthernet1/0": "down",
+
+  "FastEthernet1/1": "down",
+
+  "FastEthernet2/0": "down",
+
+  "FastEthernet2/1": "down",
+
+  "GigabitEthernet3/0": "down",
+
+  "Null0": "up"
+
+ }
+
+}
