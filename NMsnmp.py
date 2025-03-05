@@ -25,7 +25,7 @@ def add_ip_from_oid(address_dict, interface, oid_id):
         body = ps[2:2+7*2]
         body_str = ["%02x%s" % (int(body[i]), ":" if i%2 else "") for i in range(len(body))]
         ip = ("".join(body_str)[:-1])
-        if "v6" not in address_dict.keys():
+        if "v6" not in interface_dict.keys():
             interface_dict["v6"] = [ip]
         else:
             interface_dict["v6"].append(ip)
@@ -41,7 +41,7 @@ def write_snmp_to_file(file, hosts):
         h_addresses = res1[hostname]["addresses"]
         interface_items = s.walk("ifDescr")
         interfaces = [i.value for i in interface_items]
-        address_items = s.walk("ipAddressType")
+        address_items = s.walk("ipAddressIfIndex")
         for i in address_items:
             add_ip_from_oid(h_addresses, interfaces[int(i.value)-1], i.oid_index)
         oper_items = s.walk("ifOperStatus")
@@ -50,13 +50,14 @@ def write_snmp_to_file(file, hosts):
         json.dump(res1, f, indent=1)
         f.write("\n")
         json.dump(res2, f, indent=1)
+        f.write("\n")
 
 def plot_cpu(file, host):
     s = Session(hostname=host, community="public", version=2)
     x = []
     y = []
     t = time.time()
-    for _ in range(2*60//5):
+    for _ in range(12*2):
         x.append(time.time()-t)
         y.append(float(s.walk("cpmCPUTotal5secRev")[0].value))
         time.sleep(5)
