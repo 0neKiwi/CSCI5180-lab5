@@ -22,7 +22,7 @@ def add_ip_from_oid(address_dict, interface, oid_id):
             interface_dict["v4"].append(ip)
         return ip
     if prefix in ("4.20", "2.16"):
-        body = ps[2:2+7*2]
+        body = ps[2:2+8*2]
         body_str = ["%02x%s" % (int(body[i]), ":" if i%2 else "") for i in range(len(body))]
         ip = ("".join(body_str)[:-1])
         if "v6" not in interface_dict.keys():
